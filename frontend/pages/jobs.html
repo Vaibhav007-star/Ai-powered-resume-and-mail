@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Ingestion - Resume & Email Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen p-6">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <div class="flex items-center justify-between border-b pb-4">
+      <h1 class="text-2xl font-bold text-slate-900">Job Ingestion Studio</h1>
+      <a href="/" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">← Back to Dashboard</a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Ingest Form -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 space-y-4">
+        <h3 class="text-base font-bold text-slate-900">Manual Job Ingestion</h3>
+        <div class="space-y-3">
+          <input type="text" id="manualJobTitle" placeholder="Job Title *" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+          <input type="text" id="manualJobCompany" placeholder="Company Name" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+          <input type="text" id="manualJobLocation" placeholder="Location (e.g. Remote, San Francisco, CA)" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+          <input type="text" id="manualJobUrl" placeholder="Source URL (Optional)" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+          <textarea id="manualJobDesc" rows="6" placeholder="Job Description / Requirements *" class="w-full border border-slate-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500"></textarea>
+          <button onclick="ingestManualJob()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm rounded-xl shadow-xs transition">Ingest Listing</button>
+        </div>
+      </div>
+
+      <!-- Live Fetcher & List -->
+      <div class="space-y-6">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 space-y-4">
+          <h3 class="text-base font-bold text-slate-900">Live API Job Fetcher</h3>
+          <div class="flex space-x-2">
+            <input type="text" id="fetchQuery" placeholder="Keyword (e.g. Python, Frontend, Remote)..." class="flex-1 border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+            <button onclick="searchLiveJobs()" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs rounded-xl shadow-xs transition">Search</button>
+          </div>
+          <div id="fetchedJobsResults" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 space-y-4">
+          <h3 class="text-base font-bold text-slate-900">Ingested Pipeline Listings</h3>
+          <div id="ingestedJobsList" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/phase2_jobs.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadJobsList();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Review & Dispatch - Resume & Email Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen p-6">
+  <div class="max-w-6xl mx-auto space-y-6">
+    <div class="flex items-center justify-between border-b pb-4">
+      <h1 class="text-2xl font-bold text-slate-900">Human-in-the-Loop Review Station</h1>
+      <a href="/" class="text-sm font-medium text-indigo-600 hover:text-indigo-800">← Back to Dashboard</a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-[10px] font-bold tracking-wider text-slate-400 uppercase">Target Application</span>
+          <h3 id="p4JobSummary" class="text-base font-bold text-slate-800">Select a Job in Phase 2/3 first</h3>
+        </div>
+        <span class="px-3 py-1 bg-amber-50 text-amber-700 border border-amber-200 font-bold text-xs rounded-full">REVIEW REQUIRED</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Recipient Email Address</label>
+          <input type="email" id="p4RecipientEmail" placeholder="hiring.manager@company.com" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Email Subject Line</label>
+          <input type="text" id="p4EmailSubject" placeholder="Application for Senior Engineer - Candidate Name" class="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-600 mb-1">Email Body Content (Final Edit)</label>
+        <textarea id="p4EmailBody" rows="10" placeholder="Final email draft..." class="w-full border border-slate-200 rounded-xl p-4 text-sm font-mono focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <button onclick="dispatchEmail(true)" class="px-5 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-medium text-sm rounded-xl transition">🧪 Test Dry Run (Simulate)</button>
+        <button onclick="dispatchEmail(false)" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm rounded-xl shadow-xs transition">🚀 Approve & Send Email</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/phase4_review.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadReviewStation();
+    });
+  </script>
+</body>
+</html>
